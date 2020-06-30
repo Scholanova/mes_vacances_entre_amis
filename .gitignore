@@ -66,4 +66,6 @@ typings/
 
 # system
 .DS_Store
-config/config.js
+
+# fichier text
+tache
