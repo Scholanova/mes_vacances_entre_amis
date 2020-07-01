@@ -16,6 +16,7 @@ module.exports = {
             {
                 id: 1000001,
                 name: 'Restaurant - Le tonton',
+                eventId: 1000001,
                 createdAt: new Date(),
                 updatedAt: new Date()
             }
