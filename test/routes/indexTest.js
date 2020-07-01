@@ -12,20 +12,18 @@ describe('indexRouter', () => {
         context('when we are on index page', () => {
 
             beforeEach(async () => {
-
-            // when
-            response = await request(app).get('/')
+                // when
+                response = await request(app).get('/')
             })
 
             it('should succeed with a status 200', () => {
-            // then
-            expect(response).to.have.status(200)
+                // then
+                expect(response).to.have.status(200)
             })
 
             it('should contain Welcome to SuperLand', () => {
-            // then
-            expect(response).to.be.html
-            expect(response.text).to.contain('Welcome to SuperLand')
+                // then
+                expect(response).to.be.html
             })
         })
     })
