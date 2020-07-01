@@ -67,3 +67,4 @@ typings/
 # system
 .DS_Store
 
+/.vs
