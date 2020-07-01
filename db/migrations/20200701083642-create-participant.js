@@ -18,8 +18,18 @@ module.exports = {
                 onUpdate: 'cascade',
                 onDelete: 'cascade'
             },
+            expenseId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'Expenses',
+                    key: 'id'
+                },
+                onUpdate: 'cascade',
+                onDelete: 'cascade'
+            },
             amount: {
-                type: Sequelize.NUMBER,
+                type: Sequelize.FLOAT,
                 allowNull: false
             },
             createdAt: {

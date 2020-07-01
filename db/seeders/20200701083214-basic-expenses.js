@@ -12,25 +12,10 @@ module.exports = {
                 isBetaMember: false
             }], {});
         */
-        return queryInterface.bulkInsert('Users', [
+        return queryInterface.bulkInsert('Expenses', [
             {
                 id: 1000001,
-                userId: 1000001,
-                amount: 90,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            },
-            {
-                id: 1000002,
-                userId: 1000002,
-                amount: 0,
-                createdAt: new Date(),
-                updatedAt: new Date()
-            },
-            {
-                id: 1000003,
-                userId: 1000003,
-                amount: 0,
+                name: 'Restaurant - Le tonton',
                 createdAt: new Date(),
                 updatedAt: new Date()
             }
@@ -45,6 +30,6 @@ module.exports = {
             Example:
             return queryInterface.bulkDelete('People', null, {});
         */
-        return queryInterface.bulkDelete('Participants', null, {});
+        return queryInterface.bulkDelete('Expenses', null, {});
     }
 };
