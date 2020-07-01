@@ -12,29 +12,29 @@ module.exports = {
             isBetaMember: false
         }], {});
         */
-        return queryInterface.bulkInsert('UsersEvents', [
+        return queryInterface.bulkInsert('Sessions', [
             {
                 id: 1000001,
                 userId: 1000001,
-                eventId: 1000001,
+                token: 'user1000001rgtoken',
                 createdAt: new Date(),
                 updatedAt: new Date()
             },
             {
                 id: 1000002,
                 userId: 1000002,
-                eventId: 1000001,
+                token: 'user1000002rgtoken',
                 createdAt: new Date(),
                 updatedAt: new Date()
             },
             {
                 id: 1000003,
                 userId: 1000003,
-                eventId: 1000001,
+                token: 'user1000003rgtoken',
                 createdAt: new Date(),
                 updatedAt: new Date()
             }
-        ]) 
+        ])
     },
     
     down: (queryInterface, Sequelize) => {
@@ -45,6 +45,6 @@ module.exports = {
         Example:
         return queryInterface.bulkDelete('People', null, {});
         */
-        return query.bulkDelete('UsersEvents', null, {});
+       return queryInterface.bulkDelete('Sessions', null, {});
     }
 };
