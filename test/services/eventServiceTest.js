@@ -36,7 +36,7 @@ describe('eventService', () => {
                 await eventCreationPromise.catch(() => {})
                 expect(eventRepository.create).to.have.been.calledWith(eventData)
             })
-
+            
             it('should resolve with the created event from reprository', () => {
                 // then
                 return expect(eventCreationPromise).to.eventually.equal(event)
@@ -90,7 +90,7 @@ describe('eventService', () => {
                 await eventCreationPromise.catch(() => {})
                 expect(eventRepository.create).to.not.have.been.called
             })
-
+            
             it('should reject with a ValidationError error about name being too short', () => {
                 // then
                 const expectedErrorDetails = [{
@@ -122,7 +122,7 @@ describe('eventService', () => {
                 await eventCreationPromise.catch(() => {})
                 expect(eventRepository.create).to.not.have.been.called
             })
-
+            
             it('should reject with a ValidationError error about missing dateStart', () => {
                 // then
                 const expectedErrorDetails = [{
@@ -152,7 +152,7 @@ describe('eventService', () => {
                 await eventCreationPromise.catch(() => {})
                 expect(eventRepository.create).to.not.have.been.called
             })
-
+            
             it('should reject with a ValidationError error about invalid dateStart format', () => {
                 // then
                 const expectedErrorDetails = [{
@@ -192,7 +192,7 @@ describe('eventService', () => {
                 await eventCreationPromise.catch(() => {})
                 expect(eventRepository.create).to.not.have.been.called
             })
-
+            
             it('should reject with a ValidationError error about missing dateEnd', () => {
                 // then
                 const expectedErrorDetails = [{
@@ -222,7 +222,7 @@ describe('eventService', () => {
                 await eventCreationPromise.catch(() => {})
                 expect(eventRepository.create).to.not.have.been.called
             })
-
+            
             it('should reject with a ValidationError error about invalid dateEnd format', () => {
                 // then
                 const expectedErrorDetails = [{
@@ -234,6 +234,56 @@ describe('eventService', () => {
                         label: 'dateEnd', 
                         key: 'dateEnd', 
                         value: '1er Juin 2020'
+                    },
+                    
+                }]
+                
+                return expect(eventCreationPromise)
+                .to.eventually.be.rejectedWith(Joi.ValidationError)
+                .with.deep.property('details', expectedErrorDetails)
+            }
+            )
+        })
+        context('when the event dateEnd is lower than the dateStart', () => {
+            
+            beforeEach(() => {
+                // given
+                eventData = factory.createEventData({ dateStart: new Date(2020, 1, 2), dateEnd: new Date(2020, 1, 1) })
+                
+                // when
+                eventCreationPromise = eventService.create(eventData)
+            })
+            
+            it('should not call the event Repository', async () => {
+                // then
+                await eventCreationPromise.catch(() => {})
+                expect(eventRepository.create).to.not.have.been.called
+            })
+            
+            it('should reject with a ValidationError error about invalid dateEnd format', () => {
+                // then
+                const expectedErrorDetails = [{
+                    message:  'La date de fin de l\'événement doit être supérieur à celle de début',
+                    path: ['dateEnd'],
+                    type: 'date.min',
+                    context: {
+                        limit: {
+                            adjust: null,
+                            ancestor: 1,
+                            depth: 1,
+                            display: 'ref:dateStart',
+                            in: false,
+                            iterables: null,
+                            key: 'dateStart',
+                            map: null,
+                            path: ['dateStart'],
+                            root: 'dateStart',
+                            separator: '.',
+                            type: 'value'
+                        },
+                        label: 'dateEnd', 
+                        key: 'dateEnd', 
+                        value: new Date(2020, 01, 01)
                     },
                     
                 }]
