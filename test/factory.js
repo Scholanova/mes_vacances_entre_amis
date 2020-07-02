@@ -3,9 +3,17 @@ const Event = models.Event
 
 
 const factory = {
+    createEventData: ({
+        name = 'Petite vacance chill',
+        dateStart = new Date(),
+        dateEnd = new Date(),
+        place = 'Dubai'
+    } = {}) => {
+        return { name, dateStart, dateEnd, place }
+    },
     createEvent: ({
         id = null,
-        name = 'Petit vacance chill',
+        name = 'Petits vacance chill',
         dateStart = new Date(),
         dateEnd = new Date(),
         place = 'Dubai'
