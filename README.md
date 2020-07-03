@@ -19,3 +19,19 @@ GET /events
 GET /events/new 
 
 POST /events/new 
+
+GET /
+
+GET /error
+
+GET /users/new
+
+GET /users/login
+
+POST /users/new
+
+POST /users/login
+
+GET /users/event
+
+POST /users/event
