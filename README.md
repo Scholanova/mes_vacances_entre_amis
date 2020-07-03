@@ -12,3 +12,8 @@ forme des branches : feature-#numéro issue exemple : creer_bdd-#5
 
 
 https://vacanceentreamis.osc-fr1.scalingo.io
+
+# routes
+GET /events
+GET /events/new 
+POST /events/new 
