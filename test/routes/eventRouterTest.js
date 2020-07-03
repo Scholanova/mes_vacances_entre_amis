@@ -14,7 +14,7 @@ describe('eventRouter', () => {
             // given
             
             // when
-            response = await request(app).get('/event/new')
+            response = await request(app).get('/events/new')
         })
         
         it('should succeed with a status 200', () => {
@@ -53,7 +53,7 @@ describe('eventRouter', () => {
                 eventService.create.resolves(event)
                 
                 // when
-                response = await request(app).post('/event/new')
+                response = await request(app).post('/events/new')
                 .type('form')
                 .send({ 
                     name, dateStart, dateEnd, place
@@ -78,7 +78,7 @@ describe('eventRouter', () => {
             
             it('should redirect to event list page', () => {
                 // then
-                expect(response).to.redirectTo('/event')
+                expect(response).to.redirectTo('/events')
             })
             
         })
@@ -159,7 +159,7 @@ describe('eventRouter', () => {
                 eventService.create.rejects(validationError)
                 
                 // when
-                response = await request(app).post('/event/new')
+                response = await request(app).post('/events/new')
                                             .type('form')
                                             .send({ name, dateStart, dateEnd, place })
                                             .redirects(0)
@@ -212,7 +212,7 @@ describe('eventRouter', () => {
                 eventService.create.rejects(validationError)
                 
                 // when
-                response = await request(app).post('/event/new')
+                response = await request(app).post('/events/new')
                                             .type('form')
                                             .send({ name, dateEnd, place })
                                             .redirects(0)
@@ -267,7 +267,7 @@ describe('eventRouter', () => {
                 eventService.create.rejects(validationError)
                 
                 // when
-                response = await request(app).post('/event/new')
+                response = await request(app).post('/events/new')
                                             .type('form')
                                             .send({ name, dateStart, place })
                                             .redirects(0)
