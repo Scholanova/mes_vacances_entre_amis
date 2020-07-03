@@ -10,6 +10,8 @@ une branche par feature.
 
 forme des branches : feature-#numéro issue exemple : creer_bdd-#5
 
+Table : 
+Participant ==> participants des dépenses.
 
 https://vacanceentreamis.osc-fr1.scalingo.io
 
