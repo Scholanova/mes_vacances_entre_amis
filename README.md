@@ -15,5 +15,7 @@ https://vacanceentreamis.osc-fr1.scalingo.io
 
 # routes
 GET /events
+
 GET /events/new 
+
 POST /events/new 
