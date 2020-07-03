@@ -66,5 +66,8 @@ typings/
 
 # system
 .DS_Store
+<<<<<<< HEAD
+=======
 
 /.vs
+>>>>>>> 3b6206339e1ba966735607a7c3c9d06553c771b6
