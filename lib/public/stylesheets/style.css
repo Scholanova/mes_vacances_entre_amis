@@ -1,23 +1,9 @@
-<<<<<<< HEAD
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-
-.title {
-  color: #00B7FF;
-}
-
-.subtitle {
-  color: #527c8d;
-}
-=======
 .btn-block {
     width: 100%;
+}
+
+li { 
+    list-style-type: none;
 }
 
 .p0 { padding: 0!important; }
@@ -83,4 +69,5 @@ a {
 .ml3 { margin-left: 3em!important; }
 .ml4 { margin-left: 4em!important; }
 .ml5 { margin-left: 5em!important; }
->>>>>>> 3b6206339e1ba966735607a7c3c9d06553c771b6
+
+.b0 { border: none!important; }
