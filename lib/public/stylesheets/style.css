@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+li { 
+    list-style-type: none;
+}
+
 .p0 { padding: 0!important; }
 .p1 { padding: 1em!important; }
 .p2 { padding: 2em!important; }
@@ -65,3 +69,5 @@
 .ml3 { margin-left: 3em!important; }
 .ml4 { margin-left: 4em!important; }
 .ml5 { margin-left: 5em!important; }
+
+.b0 { border: none!important; }
