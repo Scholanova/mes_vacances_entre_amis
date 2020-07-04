@@ -42,34 +42,38 @@ describe('expenseRouter', () => {
         
         context('when the expense creation succeeds', () => {
             
-            let name, dateStart, dateEnd, place
+            let name, eventId
             
             beforeEach(async () => {
-                // given
-                name = 'Voyage en Italie'
-                dateStart = new Date()
-                dateEnd = new Date()
-                place = 'Italie'
-                expense = factory.createExpense({ name, dateStart, dateEnd, place })
-                
-                expenseService.create.resolves(expense)
+                // given                
+                name = 'Course du lundi'
+                event = factory.createEvent()
+                await event.save()
+                eventId = event.id.toString()
+                expense = factory.createExpense({ name, eventId })
+
+                expenseService.create.resolves(expenseService)
                 
                 // when
-                response = await request(app).post('/expenses/new')
-                .type('form')
-                .send({ 
-                    name, dateStart, dateEnd, place
-                })
-                .redirects(0)
+                response = await request(app).post(`/events/${eventId}/expenses/new`)
+                                            .set('content-type', 'application/json')
+                                            .send({ 
+                                                name, eventId,
+                                                participants: ['1000001', '1000002'],
+                                                amount: ['100', '0']
+                                            })
+                                            .redirects(0)
             })
             
             it('should call the servie with expense data', () => {
                 // then
                 expect(expenseService.create).to.have.been.calledWith({ 
                     name: name, 
-                    dateStart: dateStart.toISOString(), 
-                    dateEnd: dateEnd.toISOString(), 
-                    place: place
+                    eventId: eventId,
+                    participants: [
+                        { userId: '1000001', amount: '100' },
+                        { userId: '1000002', amount: '0' }
+                    ]
                 })
             })
             
@@ -80,7 +84,7 @@ describe('expenseRouter', () => {
             
             it('should redirect to expense list page', () => {
                 // then
-                expect(response).to.redirectTo('/expenses')
+                expect(response).to.redirectTo(`/events/${eventId}/expenses`)
             })
             
         })
@@ -88,29 +92,34 @@ describe('expenseRouter', () => {
         //* name
         context('when the name is missing', () => {
             
-            let dateStart, dateEnd, place
+            let eventId
             let validationError
             
             beforeEach(async () => {
                 // given
-                dateStart = new Date()
-                dateEnd = new Date()
-                place = 'Italie'
+                event = factory.createEvent()
+                await event.save()
+                eventId = event.id.toString()
+
                 errorDetails = [{
-                    message: 'Le nom de l\'événement est requis',
+                    message: 'Le nom de la dépense est requis',
                     path: ["name"],
                     type: "any.required",
                     context: { label: "name", key: "name" }
                 }]
-                errorMessage = 'Le nom de l\'événement est requis'
+                errorMessage = 'Le nom de la dépense est requis'
                 validationError = new Joi.ValidationError(errorMessage, errorDetails, undefined)
                 
                 expenseService.create.rejects(validationError)
                 
                 // when
-                response = await request(app).post('/expenses/new')
-                                            .type('form')
-                                            .send({ dateStart, dateEnd, place })
+                response = await request(app).post(`/events/${eventId}/expenses/new`)
+                                            .set('content-type', 'application/json')
+                                            .send({ 
+                                                eventId,
+                                                participants: ['1000001', '1000002'],
+                                                amount: ['100', '0']
+                                            })
                                             .redirects(0)
             })
             
@@ -118,9 +127,11 @@ describe('expenseRouter', () => {
                 // then
                 expect(expenseService.create).to.have.been.calledWith({
                     name: undefined,
-                    dateStart: dateStart.toISOString(), 
-                    dateEnd: dateEnd.toISOString(), 
-                    place: place
+                    eventId: eventId,
+                    participants: [
+                        { userId: '1000001', amount: '100' },
+                        { userId: '1000002', amount: '0' }
+                    ]
                 })
             })
 
@@ -132,173 +143,12 @@ describe('expenseRouter', () => {
             it('should show create expense page with error message', () => {
                 // then
                 expect(response).to.be.html
-                expect(response.text).to.contain('Création d\'événement')
-                expect(response.text).to.contain('Le nom de l&#39;événement est requis')
+                expect(response.text).to.contain('Création d\'une dépense')
+                expect(response.text).to.contain('Le nom de la dépense est requis')
             })
             
         })
         
-        context('when the name have less than 6 characters', () => {
-            
-            let name, dateStart, dateEnd, place
-            let validationError
-            
-            beforeEach(async () => {
-                // given
-                name = 'Small'
-                dateStart = new Date()
-                dateEnd = new Date()
-                place = 'Italie'
-                errorDetails = [{
-                    message: 'Le nom de l\'événement doit contenir minimun 6 caractères',
-                    path: ["name"],
-                    type: "string.min",
-                    context: { label: "name", key: "name" }
-                }]
-                errorMessage = 'Le nom de l\'événement doit contenir minimun 6 caractères'
-                validationError = new Joi.ValidationError(errorMessage, errorDetails, undefined)
-                
-                expenseService.create.rejects(validationError)
-                
-                // when
-                response = await request(app).post('/expenses/new')
-                                            .type('form')
-                                            .send({ name, dateStart, dateEnd, place })
-                                            .redirects(0)
-            })
-            
-            it('should call the service with expense data', () => {
-                // then
-                expect(expenseService.create).to.have.been.calledWith({
-                    name: name,
-                    dateStart: dateStart.toISOString(), 
-                    dateEnd: dateEnd.toISOString(), 
-                    place: place
-                })
-            })
-
-            it('should succeed with a status 200', () => {
-                // then
-                expect(response).to.have.status(200)
-            })
-
-            it('should show create expense page with error message', () => {
-                // then
-                expect(response).to.be.html
-                expect(response.text).to.contain('Création d\'événement')
-                expect(response.text).to.contain('Le nom de l&#39;événement doit contenir minimun 6 caractères')
-            })
-            
-        })
-
-        //* dateStart
-        context('when the dateStart is missing', () => {
-            
-            let name, dateEnd, place
-            let validationError
-            
-            beforeEach(async () => {
-                // given
-                dateStart = new Date()
-                dateEnd = new Date()
-                place = 'Italie'
-                errorDetails = [{
-                    message: 'L\'événement doit avoir une date de début',
-                    path: ["dateStart"],
-                    type: "any.required",
-                    context: { label: "dateStart", key: "dateStart" }
-                }]
-                errorMessage = 'L\'événement doit avoir une date de début'
-                validationError = new Joi.ValidationError(errorMessage, errorDetails, undefined)
-                
-                expenseService.create.rejects(validationError)
-                
-                // when
-                response = await request(app).post('/expenses/new')
-                                            .type('form')
-                                            .send({ name, dateEnd, place })
-                                            .redirects(0)
-            })
-            
-            it('should call the service with expense data', () => {
-                // then
-                expect(expenseService.create).to.have.been.calledWith({
-                    name: name,
-                    dateStart: undefined, 
-                    dateEnd: dateEnd.toISOString(), 
-                    place: place
-                })
-            })
-
-            it('should succeed with a status 200', () => {
-                // then
-                expect(response).to.have.status(200)
-            })
-
-            it('should show create expense page with error message', () => {
-                // then
-                expect(response).to.be.html
-                expect(response.text).to.contain('Création d\'événement')
-                expect(response.text).to.contain('L&#39;événement doit avoir une date de début')
-            })
-            
-        })
-
-        // TODO: Tester la validation du format des dates
-
-        //* dateEnd
-        context('when the dateEnd is missing', () => {
-            
-            let name, dateStart, place
-            let validationError
-            
-            beforeEach(async () => {
-                // given
-                name = 'Voyage en Italie'
-                dateStart = new Date()
-                place = 'Italie'
-                errorDetails = [{
-                    message: 'L\'événement doit avoir une date de fin',
-                    path: ["dateStart"],
-                    type: "any.required",
-                    context: { label: "dateStart", key: "dateStart" }
-                }]
-                errorMessage = 'L\'événement doit avoir une date de fin'
-                validationError = new Joi.ValidationError(errorMessage, errorDetails, undefined)
-                
-                expenseService.create.rejects(validationError)
-                
-                // when
-                response = await request(app).post('/expenses/new')
-                                            .type('form')
-                                            .send({ name, dateStart, place })
-                                            .redirects(0)
-            })
-            
-            it('should call the service with expense data', () => {
-                // then
-                expect(expenseService.create).to.have.been.calledWith({
-                    name: name,
-                    dateStart: dateStart.toISOString(), 
-                    dateEnd: undefined, 
-                    place: place
-                })
-            })
-
-            it('should succeed with a status 200', () => {
-                // then
-                expect(response).to.have.status(200)
-            })
-
-            it('should show create expense page with error message', () => {
-                // then
-                expect(response).to.be.html
-                expect(response.text).to.contain('Création d\'événement')
-                expect(response.text).to.contain('L&#39;événement doit avoir une date de fin')
-            })
-            
-        })
-
     })
     
 })
