@@ -16,10 +16,6 @@ module.exports = {
         logging: false
     },
     production: {
-        username: 'vacanceentre_4537',
-        password: 'LfxT9jOm1gaG1CruWq8a',
-        database: 'vacanceentre_4537',
-        host: '127.0.0.1',
         use_env_variable: 'DATABASE_URL',
         dialect: 'postgres',
         logging: (msg) => console.log('[DATABASE]', msg)
