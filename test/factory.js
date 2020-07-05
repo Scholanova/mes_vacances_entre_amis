@@ -21,9 +21,13 @@ const factory = {
     },
     createExpenseData: ({
         name = 'Péage allé',
-        eventId = 1000001
+        eventId = 1000001,
+        participants = [
+            { userId: 1000001, amount: 100 },
+            { userId: 1000002, amount: 0 },
+        ]
     } = {}) => {
-        return { name, eventId }
+        return { name, eventId, participants }
     },
     createExpense: ({
         id = null,
