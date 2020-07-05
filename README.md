@@ -23,13 +23,13 @@ GET /
 
 GET /error
 
-GET /users/new
+GET /auth/signup
 
-GET /users/login
+GET /auth/signin
 
-POST /users/new
+POST /auth/signup
 
-POST /users/login
+POST /auth/signin
 
 GET /users/event
 
