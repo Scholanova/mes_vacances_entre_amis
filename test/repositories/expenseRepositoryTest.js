@@ -17,7 +17,9 @@ describe('expenseRepository', () => {
         
         beforeEach(async () => {
             // given
-            expenseData = factory.createExpenseData()
+            let event = factory.createEvent()
+            await event.save()
+            expenseData = factory.createExpenseData({ eventId: event.id })
             
             // when
             createdExpense = await expenseRepository.create(expenseData)
