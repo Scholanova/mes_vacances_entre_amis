@@ -1,5 +1,5 @@
-const models = require('../lib/models')
-const Event = models.Event
+const { Event, Expense } = require('../lib/models')
+
 
 const factory = {
     createEventData: ({
@@ -18,6 +18,23 @@ const factory = {
         place = 'Dubai'
     } = {}) => {
         return new Event({ id, name, dateStart, dateEnd, place })
+    },
+    createExpenseData: ({
+        name = 'Péage allé',
+        eventId = 1000001,
+        participants = [
+            { userId: 1000001, amount: 100 },
+            { userId: 1000002, amount: 0 },
+        ]
+    } = {}) => {
+        return { name, eventId, participants }
+    },
+    createExpense: ({
+        id = null,
+        name = 'Péage allé',
+        eventId = 1000001
+    } = {}) => {
+        return new Expense({ id, name, eventId })
     }
 }
 

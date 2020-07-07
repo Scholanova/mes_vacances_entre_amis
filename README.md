@@ -1,14 +1,41 @@
 # mes_vacances_entre_amis
 Projet 2020 - Mes vacances entre amis
 
-# architecture
-route-service-repository
+# Règles de structure
 
-tout les noms de table en anglais au singulier.
+- API: route / service / repository
+- Models: Nom de table en anglais au singulier.
 
-une branche par feature.
+# Rgèle de développement
 
-forme des branches : feature-#numéro issue exemple : creer_bdd-#5
+- 1 feature = 1 issue = 1 branche
+- Nom des branches = ${feature}-#${numero_issue} ( ex: creer_bdd-#5 )
 
+# API
 
-https://vacanceentreamis.osc-fr1.scalingo.io
+GET /events
+
+GET /events/new 
+
+POST /events/new 
+
+GET /
+
+GET /error
+
+GET /auth/signup
+
+GET /auth/signin
+
+POST /auth/signup
+
+POST /auth/signin
+
+GET /users/event
+
+POST /users/event
+
+# Infos
+
+- Lien application externe: https://vacanceentreamis.osc-fr1.scalingo.io
+- Structure base de données: https://dbdiagram.io/d/5efca14a0425da461f041e98
