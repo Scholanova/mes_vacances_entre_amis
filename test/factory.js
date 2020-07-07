@@ -1,6 +1,5 @@
 const { Event, Expense } = require('../lib/models')
 
-
 const factory = {
     createEventData: ({
         name = 'Petite vacance chill',
