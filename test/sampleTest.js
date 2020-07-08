@@ -5,7 +5,7 @@ describe('a test test', () => {
     expect(true).to.be.true
   })
 
-    it('the test works', () => {
+    it('the test works 2', () => {
         expect(true).to.be.true
     })
 

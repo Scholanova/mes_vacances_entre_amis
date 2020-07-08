@@ -1,4 +1,4 @@
-const { Event, Expense } = require('../lib/models')
+const { Event, Expense, Participant, User } = require('../lib/models')
 
 const factory = {
     createEventData: ({
@@ -34,6 +34,34 @@ const factory = {
         eventId = 1000001
     } = {}) => {
         return new Expense({ id, name, eventId })
+    },
+    createParticipant: ({
+        id = null,
+        userId = 1000001,
+        expenseId = 1000001,
+        amount = 0
+    } = {}) => {
+        return new Participant({ id, userId, expenseId, amount })
+    },
+    createParticipantData: ({
+
+    }) => {
+
+    },
+    createUser: ({
+        id = null,
+        pseudo = 'LePanda',
+        email = 'lepanda@gmail.com',
+        password = '123456'
+    } = {}) => {
+        return new User({ id, pseudo, email, password })
+    },
+    createUserData: ({
+        pseudo = 'LePanda',
+        email = 'lepanda@gmail.com',
+        password = '123456'
+    } = {}) => {
+        return { id, pseudo, email, password }
     }
 }
 
