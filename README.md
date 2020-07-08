@@ -14,7 +14,7 @@ Projet 2020 - Mes vacances entre amis
 # Architecture
 Nous avons choisis d'utiliser nodeJS pour le backend pour ses performances et ça facilité de développement. [Mensonge flagrant].
 Nous avons également choisis EJS pour le front de l'application afin de permettre au client de faire évoluer son backend et son front end avec du javascript. Cela permettra au client de pouvoir plus facilement embaucher un développeur qui maitrise le javascrit pour améliorer son front et son back.
-
+On a choisit postgresql pour la base de donnée car c'est une base de donnée répandue 
 # API
 
 GET /events
