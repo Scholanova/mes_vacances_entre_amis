@@ -11,6 +11,10 @@ Projet 2020 - Mes vacances entre amis
 - 1 feature = 1 issue = 1 branche
 - Nom des branches = ${feature}-#${numero_issue} ( ex: creer_bdd-#5 )
 
+# Architecture
+Nous avons choisis d'utiliser nodeJS pour le backend pour ses performances et ça facilité de développement. [Mensonge flagrant].
+Nous avons également choisis EJS pour le front de l'application afin de permettre au client de faire évoluer son backend et son front end avec du javascript. Cela permettra au client de pouvoir plus facilement embaucher un développeur qui maitrise le javascrit pour améliorer son front et son back.
+
 # API
 
 GET /events
