@@ -16,7 +16,7 @@
     "db:test:migrate": "NODE_ENV=test npx sequelize db:migrate",
     "db:test:migrate:windows": "set NODE_ENV=test&& npx sequelize db:migrate",
     "db:test:reset": "NODE_ENV=test npx sequelize db:drop && npm run db:test:init && npm run db:test:migrate",
-    "db:test:reset:windows": "set NODE_ENV=test&& npx sequelize db:drop && npm run db:test:init && npm run db:test:migrate"
+    "db:test:reset:windows": "set NODE_ENV=test&& npx sequelize db:drop && npm run db:test:init:windows && npm run db:test:migrate:windows"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
