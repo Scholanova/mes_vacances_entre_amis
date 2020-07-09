@@ -1,7 +1,7 @@
 # mes_vacances_entre_amis
 Projet 2020 - Mes vacances entre amis
 ## Le but du projet :
-    faire une application qui permet de gérer les dépenses d'un séjour entre amis. Nous devons permettre de s'authentifier avec mail et mot de passe, de créer un évenement qui peut être à la fois une vacance ou une soirée. Les utilisateurs doivent ensuite pouvoir ajouter des dépenses à cette évenement dire qui a participer à cette dépense et qui a payé quoi. L'application doit être capable de déterminé qui doit rembourser qui pour chaque dépense et à la fin du séjour.
+faire une application qui permet de gérer les dépenses d'un séjour entre amis. Nous devons permettre de s'authentifier avec mail et mot de passe, de créer un évenement qui peut être à la fois une vacance ou une soirée. Les utilisateurs doivent ensuite pouvoir ajouter des dépenses à cette évenement dire qui a participer à cette dépense et qui a payé quoi. L'application doit être capable de déterminé qui doit rembourser qui pour chaque dépense et à la fin du séjour.
     
 # Règles
 ## Règles de Structures
