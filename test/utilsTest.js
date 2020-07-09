@@ -193,11 +193,10 @@ describe('utils', () => {
 				await expense.save()
 	
 				let usersData = [
-					{ id: 10000001, amount: 12.99 },
-					{ id: 10000002, amount: 46.55 },
-					{ id: 10000003, amount: 70.20 },
-					{ id: 10000004, amount: 5.23 },
-					{ id: 10000005, amount: 95.27 },
+					{ id: 10000001, amount: 100.03 },
+					{ id: 10000002, amount: 50 },
+					{ id: 10000003, amount: 0 },
+					{ id: 10000004, amount: 0 }
 				]
 	
 				for(let i = 0; i < usersData.length; i++) {
