@@ -173,10 +173,10 @@ describe('utils', () => {
 				expect(result).to.deep.equal({
 					total: 873.88,
 					payements: [
-						{ from: 10000001, to: 10000002, amount: 16.526 },
-						{ from: 10000003, to: 10000002, amount: 159.576 },
-						{ from: 10000004, to: 10000002, amount: 174.776 },
-						{ from: 10000005, to: 10000002, amount: 174.776 }
+						{ from: 10000001, to: 10000002, amount: 16.35 },
+						{ from: 10000003, to: 10000002, amount: 159.4 },
+						{ from: 10000004, to: 10000002, amount: 174.6 },
+						{ from: 10000005, to: 10000002, amount: 174.6 }
 					]
 				})
 			})
@@ -214,12 +214,11 @@ describe('utils', () => {
 			it('should return a correct list of needed payments', () => {
 				// then
 				expect(result).to.deep.equal({
-					total: 230.24,
+					total: 150.03,
 					payements: [
-						{ from: 10000001, to: 10000002, amount: 0.502 },
-						{ from: 10000001, to: 10000003, amount: 24.152 },
-						{ from: 10000001, to: 10000005, amount: 8.404 },
-						{ from: 10000004, to: 10000005, amount: 40.818 }
+						{ from: 10000003, to: 10000001, amount: 37.5 },
+						{ from: 10000004, to: 10000001, amount: 25.03 },
+						{ from: 10000004, to: 10000002, amount: 12.47 },
 					]
 				})
 			})
