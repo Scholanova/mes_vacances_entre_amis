@@ -1,12 +1,13 @@
 # mes_vacances_entre_amis
 Projet 2020 - Mes vacances entre amis
-
-# Règles de structure
-
+Le but du projet :
+faire une application 
+# Règles
+## Règles de Structures
 - API: route / service / repository
 - Models: Nom de table en anglais au singulier.
 
-# Rgèle de développement
+## Rgèle de développement
 
 - 1 feature = 1 issue = 1 branche
 - Nom des branches = ${feature}-#${numero_issue} ( ex: creer_bdd-#5 )
